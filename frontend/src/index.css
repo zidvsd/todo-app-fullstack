@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-montserrat: 'Montserrat', sans-serif;
+  --font-lora: 'Lora', serif;
+  --color-accent: rgb(158, 96, 251);
+  --color-primary: rgb(36, 29, 48);
+
+}
+
+.hover-utility {
+  @apply duration-300 ease-in-out transition-all
+}

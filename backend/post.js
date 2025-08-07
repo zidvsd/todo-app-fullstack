@@ -1,0 +1,47 @@
+const posts = [
+  {
+    title: "Post 1",
+    body: "Body of Post",
+    category: "News",
+    likes: 1,
+    tags: ["news", "events"],
+    date: new Date(),
+  },
+  {
+    title: "Post 2",
+    body: "Body of Post",
+    category: "Local",
+    likes: 1,
+    tags: ["news", "events"],
+    date: new Date(),
+  },
+  {
+    title: "Post 3",
+    body: "Body of Post",
+    category: "Celebrity",
+    likes: 1,
+    tags: ["news", "events"],
+    date: new Date(),
+  },
+  {
+    title: "Post 4",
+    body: "Body of Post",
+    category: "Sports",
+    likes: 1,
+    tags: ["news", "events"],
+    date: new Date(),
+  },
+  {
+    title: "Post 5",
+    body: "Body of Post",
+    category: "Tech",
+    likes: 1,
+    tags: ["news", "events"],
+    date: new Date(),
+  },
+  {
+    title: "Post 6",
+    body: "Body of Post",
+    category: "Tech",
+  },
+];

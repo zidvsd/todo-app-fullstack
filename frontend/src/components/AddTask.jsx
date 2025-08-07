@@ -1,0 +1,12 @@
+import React from "react";
+
+const AddTask = () => {
+  return (
+    <div className="text-white bg-accent space-x-4 px-8 py-2 flex flex-row rounded-md cursor-pointer hover-utility hover:opacity-70">
+      <p>+</p>
+      <p>Add</p>
+    </div>
+  );
+};
+
+export default AddTask;
