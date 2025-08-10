@@ -13,15 +13,3 @@
 .hover-utility {
   @apply duration-300 ease-in-out transition-all
 }
-
-.custom-toast {
-  @apply max-w-xs right-4 bottom-4 h-12;
-}
-
-@media (min-width: 640px) {
-
-  /* sm and up */
-  .custom-toast {
-    @apply w-full max-w-full left-0 right-0 bottom-0 rounded-xl;
-  }
-}

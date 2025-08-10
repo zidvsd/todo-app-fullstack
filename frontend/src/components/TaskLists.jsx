@@ -21,19 +21,23 @@ const TaskLists = () => {
       toast.success("Congratulations");
     }
   };
-  const displayAllTodos = todos;
-  const displayCompletedTodos = todos.filter((todo) => todo.completed);
-  const displayUncompletedTodos = todos.filter((todo) => !todo.completed);
 
   const filteredTodos = useMemo(() => {
+    let result = [];
     switch (activeTab) {
       case "completed":
-        return todos.filter((todo) => todo.completed);
+        result = todos.filter((todo) => todo.completed);
+        break;
       case "active":
-        return todos.filter((todo) => !todo.completed);
+        result = todos.filter((todo) => !todo.completed);
+        break;
       default:
-        return todos; // All
+        result = todos;
     }
+
+    return [...result].sort(
+      (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+    );
   }, [todos, activeTab]);
   return (
     <>

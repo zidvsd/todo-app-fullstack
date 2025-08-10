@@ -15,6 +15,8 @@ export const getTodos = async (req, res) => {
 
 export const addTodo = async (req, res) => {
   try {
+    if (!req.body.title || !req.body.title.trim())
+      return res.status(400).json({ message: "Title is required" });
     const newTodo = new Todo({
       title: req.body.title,
       completed: req.body.completed || false,

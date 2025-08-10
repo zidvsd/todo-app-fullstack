@@ -4,13 +4,18 @@ import useFetch from "../Hook/useFetch";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const TodoContext = createContext();
 export const TodoProvider = ({ children }) => {
-  const { data: todos, loading, error } = useFetch(`${API_BASE_URL}/api/todos`);
+  const {
+    data: todos,
+    loading,
+    error,
+    refetch,
+  } = useFetch(`${API_BASE_URL}/api/todos`);
   console.log("API_BASE_URL:", import.meta.env.VITE_API_BASE_URL);
   const [activeTab, setActiveTab] = useState("all");
 
   return (
     <TodoContext.Provider
-      value={{ todos, loading, error, activeTab, setActiveTab }}
+      value={{ todos, loading, error, activeTab, setActiveTab, refetch }}
     >
       {children}
     </TodoContext.Provider>
