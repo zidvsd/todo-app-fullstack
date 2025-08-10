@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useTodos } from "../context/TodoContext";
 import { formattedDateToMMDDYY } from "../utils/utils";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { useMemo } from "react";
 import { Trash2 } from "lucide-react";
 const TaskLists = () => {
@@ -18,7 +18,7 @@ const TaskLists = () => {
     const willBeChecked = !isCurrentlyChecked;
 
     if (willBeChecked) {
-      toast.success("Congratulations");
+      toast.success("Task Done!", { toastId: "done-task" });
     }
   };
 
@@ -101,19 +101,6 @@ const TaskLists = () => {
             </div>
           );
         })}
-        <ToastContainer
-          className="custom-toast rounded-xl p-4 md:p-0"
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick={false}
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-        />{" "}
       </section>
     </>
   );

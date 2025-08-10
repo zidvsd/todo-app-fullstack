@@ -9,7 +9,18 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <TodoProvider>
       <App />
-      <ToastContainer />
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />{" "}
     </TodoProvider>
   </StrictMode>
 );

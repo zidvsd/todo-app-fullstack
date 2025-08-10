@@ -34,11 +34,15 @@ const SearchInput = () => {
     if (e.key === "Enter") {
       e.preventDefault();
       if (!handleInputValidation(userInput)) {
-        toast.error("Please input a title");
+        toast.error("Please input a title", {
+          toastId: "failed-task-add",
+        });
         return;
       }
       handlePost(userInput);
-      toast.success("Successfully added a task!");
+      toast.success("Successfully added a task!", {
+        toastId: "success-task-add",
+      });
       setUserInput("");
     }
   };
