@@ -41,13 +41,12 @@ export const updateTodo = async (req, res) => {
   }
 };
 export const deleteTodo = async (req, res) => {
+  const { id } = req.params;
   try {
-    const newTodo = new Todo({
-      title: req.body.title,
-      completed: req.body.completed || false,
-    });
-    const savedTodo = await newTodo.save();
-    res.status(201).json(savedTodo);
+    const deletedTodo = await Todo.findByIdAndDelete(id);
+    if (!deletedTodo)
+      return res.status(404).json({ message: "Todo not found" });
+    res.json({ message: "Todo successfully deleted" });
   } catch (error) {
     res.status(500).json({ message: "Error creating post", error });
   }

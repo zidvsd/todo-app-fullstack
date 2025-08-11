@@ -3,34 +3,12 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import useFetch from "../Hook/useFetch";
 import { useTodos } from "../context/TodoContext";
+import { handlePost } from "../services/todoService";
 const SearchInput = () => {
   const { refetch } = useTodos();
   const [userInput, setUserInput] = useState("");
-  const endpoint = import.meta.env.VITE_API_BASE_URL;
 
-  const handlePost = async (todo) => {
-    try {
-      const res = await fetch(`${endpoint}/api/todos`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title: todo,
-          completed: false,
-        }),
-      });
-      if (!res.ok) {
-        throw new Error(`HTTP error! Status: ${res.status}`);
-      }
-      await res.json();
-      refetch();
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const handleEnter = (e) => {
+  const handleEnter = async (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
       if (!handleInputValidation(userInput)) {
@@ -39,7 +17,7 @@ const SearchInput = () => {
         });
         return;
       }
-      handlePost(userInput);
+      await handlePost(userInput, refetch);
       toast.success("Successfully added a task!", {
         toastId: "success-task-add",
       });

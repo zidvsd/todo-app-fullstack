@@ -4,10 +4,12 @@ import { formattedDateToMMDDYY } from "../utils/utils";
 import { toast } from "react-toastify";
 import { useMemo } from "react";
 import { Trash2 } from "lucide-react";
+import { handleDelete } from "../services/todoService";
+
 const TaskLists = () => {
   const { todos, error, loading, activeTab } = useTodos();
   const [checkedStates, setCheckedStates] = useState({}); // store checked state per todo
-
+  const { refetch } = useTodos();
   const toggleCheck = (id) => {
     setCheckedStates((prev) => {
       return { ...prev, [id]: !prev[id] };
@@ -96,7 +98,21 @@ const TaskLists = () => {
                     </p>
                   </div>
                 </div>
-                <Trash2 className="opacity-0 group-hover:opacity-100 cursor-pointer size-8 transition-opacity hidden group-hover:block hover:bg-light-red hover-utility rounded-md  p-2 text-dark-red" />
+                <Trash2
+                  onClick={async () => {
+                    try {
+                      await handleDelete(todo._id, refetch);
+                      toast.success("Successfully deleted task!", {
+                        toastId: "done-delete-task",
+                      });
+                    } catch (error) {
+                      toast.error("Failed to delete task", {
+                        toastId: "failed-delete-task",
+                      });
+                    }
+                  }}
+                  className="opacity-0 group-hover:opacity-100 cursor-pointer size-8 transition-opacity hidden group-hover:block hover:bg-light-red hover-utility rounded-md  p-2 text-dark-red"
+                />
               </div>
             </div>
           );
