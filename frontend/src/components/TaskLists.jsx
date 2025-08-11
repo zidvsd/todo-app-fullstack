@@ -4,7 +4,7 @@ import { formattedDateToMMDDYY } from "../utils/utils";
 import { toast } from "react-toastify";
 import { useMemo } from "react";
 import { Trash2 } from "lucide-react";
-import { handleDelete } from "../services/todoService";
+import { handleDelete, handleUpdate } from "../services/todoService";
 
 const TaskLists = () => {
   const { todos, error, loading, activeTab } = useTodos();
@@ -59,8 +59,19 @@ const TaskLists = () => {
                 <div className="flex flex-row gap-x-4 items-center">
                   <button
                     type="button"
-                    onClick={() => {
+                    onClick={async () => {
                       toggleCheck(todo._id);
+                      try {
+                        await handleUpdate(
+                          todo._id,
+                          { completed: todo.completed },
+                          refetch
+                        );
+                      } catch (error) {
+                        toast.error("Failed to update task", {
+                          toastId: "failed-update-task",
+                        });
+                      }
                     }}
                     className={`w-6 h-6 flex items-center justify-center rounded-md border-2 transition-colors duration-200 ${
                       isChecked

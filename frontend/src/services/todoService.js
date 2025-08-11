@@ -20,6 +20,27 @@ export const handlePost = async (todo, refetch) => {
     console.log(error);
   }
 };
+export const handleUpdate = async (id, updatedField, refetch) => {
+  try {
+    const res = await fetch(`${endpoint}/api/todos/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedField),
+    });
+    if (!res.ok) {
+      throw new Error(`HTTP error! Status: ${res.status}`);
+    }
+
+    await res.json();
+    refetch();
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
 export const handleDelete = async (id, refetch) => {
   try {
     const res = await fetch(`${endpoint}/api/todos/${id}`, {
